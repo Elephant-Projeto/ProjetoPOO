@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+</head>
+<body>
+    <h1>Carrinho de Compras</h1>
+    
+    {% if carrinho %}
+        <ul>
+            {% for item in carrinho %}
+                <li>
+                    <h2>{{ item.nome }}</h2>
+                    <p>Preço: R$ {{ item.preco }}</p>
+                    <p>Quantidade: {{ item.quantidade }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: R$ {{ total }}</p>
+        
+        <form action="{{ url_for('finalizar_compra') }}" method="POST">
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    {% else %}
+        <p>Seu carrinho está vazio.</p>
+    {% endif %}
+    
+    <form action="{{ url_for('index') }}" method="GET">
+        <button type="submit">Continuar Comprando</button>
+    </form>
+</body>
+</html>

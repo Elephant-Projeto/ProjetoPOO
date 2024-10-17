@@ -1,0 +1,12 @@
+/* Reset básico para margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garante que o html e o body ocupem toda a altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}

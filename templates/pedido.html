@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pedido.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Resumo do Pedido</h2>
+
+        {% if produto %}
+            <div class="produto-info">
+                <h3>Produto: {{ produto.MARCA }}</h3>
+                <img src="{{ produto.IMAGEM_URL }}" alt="{{ produto.MARCA }}" class="produto-imagem">
+                <p>Preço: R$ {{ produto.VALOR_PROD }}</p>
+            </div>
+
+            <h3>Forma de Pagamento</h3>
+            <div class="pagamento-opcoes">
+                <button onclick="location.href='{{ url_for('pagamento_pix', produto_id=produto.ID_PRODUTO) }}'">Pagar com PIX</button>
+                <button onclick="location.href='{{ url_for('pagamento_cartao', produto_id=produto.ID_PRODUTO) }}'">Pagar com Cartão</button>
+            </div>
+        {% else %}
+            <p>Produto não encontrado.</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="voltar-btn">Voltar</a>
+    </div>
+</body>
+</html>

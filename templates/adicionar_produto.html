@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adicionar_produto.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Adicionar Novo Produto</h1>
+    </header>
+    
+    <main>
+        <form action="{{ url_for('adicionar_produto') }}" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca" required>
+            </div>
+            <div>
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor" step="0.01" required>
+            </div>
+            <div>
+                <label for="qtd_estoque">Quantidade em Estoque:</label>
+                <input type="number" id="qtd_estoque" name="qtd_estoque" value="0" required>
+            </div>
+            <div>
+                <label for="imagem">Imagem:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" required>
+            </div>
+            <button type="submit">Adicionar Produto</button>
+        </form>
+        
+        <h2>Lista de Produtos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Valor</th>
+                    <th>Quantidade em Estoque</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.ID_PRODUTO }}</td>
+                    <td>{{ produto.MARCA }}</td>
+                    <td>{{ produto.VALOR_PROD }}</td>
+                    <td>{{ produto.QTD_ESTOQUE }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4">Nenhum produto encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Loja de Roupas. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

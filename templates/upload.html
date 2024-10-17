@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Imagem</title>
+</head>
+<body>
+    <h1>Upload de Imagem</h1>
+    <form action="/upload_imagem" method="post" enctype="multipart/form-data">
+        <label for="produto_id">ID do Produto:</label>
+        <input type="number" id="produto_id" name="produto_id" required><br><br>
+
+        <label for="imagem">Escolha a imagem:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

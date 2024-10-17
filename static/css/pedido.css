@@ -1,0 +1,85 @@
+/* Reset básico para margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garante que o html e o body ocupem toda a altura */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Configura o body para usar Flexbox */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+/* Estilo do título */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo dos subtítulos */
+h3 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #555;
+}
+
+/* Estilo dos parágrafos */
+p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+/* Botões */
+button {
+    background: #ff0000; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 5px; /* Margem entre os botões */
+    transition: background 0.3s, color 0.3s;
+}
+
+button:hover {
+    background: #33ff00; /* Cor de fundo do botão no hover */
+    color: #fff;
+}
+
+/* Estilo do link "Voltar" */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3; /* Cor do link no hover */
+}
+
+/* Centralização do conteúdo */
+body > h2,
+body > h3,
+body > p,
+body > button,
+body > a {
+    text-align: center;
+}

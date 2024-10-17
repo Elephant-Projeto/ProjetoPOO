@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/compra.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Resumo da Compra</h2>
+        
+        {% if carrinho %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrinho %}
+                        <tr>
+                            <td>{{ item.nome }}</td>
+                            <td>{{ item.quantidade }}</td>
+                            <td>R$ {{ item.preco }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Total: R$ {{ total_geral }}</h3>
+
+            <h3>Forma de Pagamento</h3>
+            <div class="pagamento-opcoes">
+                <button onclick="location.href='{{ url_for('pagamento_pix') }}'">Pagar com PIX</button>
+                <button onclick="location.href='{{ url_for('pagamento_cartao') }}'">Pagar com Cartão</button>
+            </div>
+            
+        {% else %}
+            <p>Seu carrinho está vazio.</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="voltar-btn">Voltar</a>
+    </div>
+</body>
+</html>
