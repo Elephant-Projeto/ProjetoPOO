@@ -1,0 +1,177 @@
+/* Reset básico para margens e preenchimentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garante que o html e o body ocupem toda a altura */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc; /* Cor de fundo mais neutra */
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #282c34; /* Cor escura para o cabeçalho */
+    color: #fff;
+    padding: 1rem 2rem; /* Espaçamento mais amplo */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.logo {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.75rem; /* Tamanho de fonte para destaque */
+    font-weight: 700; /* Peso da fonte mais forte */
+}
+
+/* Estilos do contêiner de login */
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Título do formulário */
+h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+    font-size: 1.75rem; /* Tamanho de fonte para o título */
+    font-weight: 700; /* Peso da fonte para o título */
+}
+
+/* Estilos dos grupos de entrada */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666; /* Cor de texto mais suave para o label */
+    font-weight: 500; /* Peso da fonte para o label */
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Bordas arredondadas mais sutis */
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.3); /* Sombra mais forte no foco */
+}
+
+/* Estilos do botão de login */
+.login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #004494;
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* Estilos do link de registro */
+.register-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+}
+
+.register-link a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: #282c34;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para o rodapé */
+}
+
+/* Estilo para o botão de voltar */
+.back-btn {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+/* Efeito Parallax */
+.parallax {
+    background-image: url('path/to/your/parallax-image.jpg'); /* Substitua pelo caminho da sua imagem */
+    height: 400px; /* Altura da seção parallax */
+    background-attachment: fixed; /* Efeito parallax */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.parallax-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.parallax h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.parallax p {
+    font-size: 1.25rem;
+}

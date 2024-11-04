@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento com Cartão</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/elephantlogo.png') }}" type="image/png">
+</head>
+<body class="bg-light">
+    <header class="text-center py-3">
+        <a href="#" class="logo h2 text-dark text-decoration-none">Loja de Roupas</a>
+    </header>
+
+    <main>
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+            <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%; background-color: #fff;">
+                <h2 class="text-center mb-4 text-dark">Pagamento com Cartão</h2>
+                <form action="{{ url_for('finalizar_compra') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label text-dark">Nome no Cartão:</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero_cartao" class="form-label text-dark">Número do Cartão:</label>
+                        <input type="text" id="numero_cartao" name="numero_cartao" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data_validade" class="form-label text-dark">Data de Validade (MM/AA):</label>
+                        <input type="text" id="data_validade" name="data_validade" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cvv" class="form-label text-dark">CVV:</label>
+                        <input type="text" id="cvv" name="cvv" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Pagar</button>
+                </form>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary w-100 mt-3">Voltar</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-3">
+        <p class="mb-0 text-secondary">&copy; 2024 Elephant Store</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

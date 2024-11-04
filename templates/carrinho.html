@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Carrinho</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/elephantlogo.png') }}" type="image/png">
+    
+</head>
+<body class="bg-white">
+
+
+    <header class="bg-light py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img src="{{ url_for('static', filename='img/elephant.png') }}" alt="Logo da Loja" class="logo" width="50">
+            <h1 class="h4">Elephant Store</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carrinho"><i class="fa-solid fa-cart-shopping"></i> Carrinho</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><i class="fa-solid fa-user"></i> Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Seu Carrinho</h2>
+
+        {% if carrinho %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Total</th>
+                            <th>Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in carrinho %}
+                            <tr>
+                                <td>{{ item.nome }}</td>
+                                <td>{{ item.quantidade }}</td>
+                                <td>R$ {{ item.preco }}</td>
+                                <td>R$ {{ item.preco * item.quantidade }}</td>
+                                <td>
+                                    <form action="{{ url_for('remover_do_carrinho', produto_id=item.produto_id) }}" method="POST">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">Remover</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <h3>Total Geral: R$ {{ total_geral }}</h3>
+                <div>
+                    <a href="{{ url_for('compra') }}" class="btn btn-primary me-2">Finalizar Compra</a>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Continuar Comprando</a>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center mt-4">Seu carrinho está vazio.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

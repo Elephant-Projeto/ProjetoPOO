@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/elephantlogo.png') }}" type="image/png">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/compra.css') }}">
+</head>
+<body class="bg-white">
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Resumo da Compra</h2>
+
+        {% if carrinho %}
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in carrinho %}
+                            <tr>
+                                <td>{{ item.nome }}</td>
+                                <td>{{ item.quantidade }}</td>
+                                <td>R$ {{ item.preco }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="mt-4">Total: <span class="text-primary">R$ {{ total_geral }}</span></h3>
+
+            <h3 class="mt-4">Forma de Pagamento</h3>
+            <div class="d-flex justify-content-start gap-3 mb-4">
+                <button onclick="location.href='{{ url_for('pagamento_pix') }}'" class="btn btn-success">Pagar com PIX</button>
+                <button onclick="location.href='{{ url_for('pagamento_cartao') }}'" class="btn btn-primary">Pagar com Cartão</button>
+            </div>
+        {% else %}
+            <p class="text-center mt-4">Seu carrinho está vazio.</p>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

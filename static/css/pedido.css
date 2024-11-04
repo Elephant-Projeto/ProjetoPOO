@@ -1,0 +1,111 @@
+/* Arquivo: compra.css */
+
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Estilo do container principal */
+.container {
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Estilo para os títulos */
+h2, h3 {
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f7f7f7;
+    color: #555;
+}
+
+table td {
+    background-color: #fff;
+}
+
+/* Estilo para a área de opções de pagamento */
+.pagamento-opcoes {
+    margin: 20px 0;
+}
+
+/* Estilos dos botões */
+button, .voltar-btn {
+    background-color: #0c0454;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+}
+
+button:hover, .voltar-btn:hover {
+    background-color: #04012c;
+}
+
+/* Estilo específico para o botão de "Voltar" */
+.voltar-btn {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Estilo da seção de código PIX */
+.pix-code {
+    background-color: #e2e2e2;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    button, .voltar-btn {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
