@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elephant Store</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='img/elephantlogo.png') }}" type="image/png"> <!-- Ícone da página -->
+</head>
+<body>
+    <header class="bg-light py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img src="{{ url_for('static', filename='img/elephant.png') }}" alt="Logo da Loja" class="logo" width="50"> <!-- Logo ao lado do título -->
+            <h1 class="h4">Elephant Store</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/carrinho"><i class="fa-solid fa-cart-shopping"></i> Carrinho</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><i class="fa-solid fa-user"></i> Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        <section class="hero text-center">
+            <h2>Bem-vindo à Elephant Store!</h2>
+            <p>Encontre as melhores roupas e acessórios para você.</p>
+        </section>
+
+        <section class="filters mb-4">
+            <h3>Filtros</h3>
+            <form id="filtrosForm" onsubmit="aplicarFiltros(event)">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="marca">Marca</label>
+                        <select id="marca" name="marca" class="form-control">
+                            <option value="">Selecione</option>
+                            <option value="Elephant">Elephant</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="valor-min">Valor Mínimo</label>
+                        <input type="number" id="valor-min" name="valor_min" class="form-control" placeholder="0">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="valor-max">Valor Máximo</label>
+                        <input type="number" id="valor-max" name="valor_max" class="form-control" placeholder="1000">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+            </form>
+        </section>
+
+        <section class="products mt-4">
+            <h2>Nossos Produtos</h2>
+            <div class="row" id="produtos-container">
+                {% if produtos %}
+                    {% for produto in produtos %}
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img src="{{ url_for('mostrar_imagem', produto_id=produto.ID_PRODUTO) }}" alt="{{ produto.MARCA }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ produto.MARCA }}</h5>
+                                    <p class="card-text">R$ {{ produto.VALOR_PROD }}</p>
+                                    <form action="{{ url_for('adicionar_ao_carrinho', produto_id=produto.ID_PRODUTO) }}" method="POST">
+                                        <div class="form-group">
+                                            <label for="qtd_pedido_{{ produto.ID_PRODUTO }}">Quantidade:</label>
+                                            <input type="number" id="qtd_pedido_{{ produto.ID_PRODUTO }}" name="qtd_pedido" min="1" max="{{ produto.QTD_ESTOQUE }}" value="1" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Não há produtos disponíveis no momento.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-light text-center py-3">
+        <div class="container">
+            <p>&copy; 2024 Elephant Store</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        async function aplicarFiltros(event) {
+            event.preventDefault(); 
+            const form = document.getElementById('filtrosForm');
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData).toString();
+
+            try {
+                const response = await fetch(`/api/produtos?${params}`);
+                const produtos = await response.json();
+                exibirProdutos(produtos);
+            } catch (error) {
+                console.error('Erro ao aplicar filtros:', error);
+            }
+        }
+
+        function exibirProdutos(produtos) {
+            const produtosContainer = document.getElementById('produtos-container');
+            produtosContainer.innerHTML = ''; 
+
+            if (produtos.length === 0) {
+                produtosContainer.innerHTML = '<p>Nenhum produto encontrado.</p>';
+                return;
+            }
+
+            produtos.forEach(produto => {
+                const produtoDiv = document.createElement('div');
+                produtoDiv.className = 'col-md-4';
+                produtoDiv.innerHTML = `
+                    <div class="card mb-4">
+                        <img src="/path/to/image/${produto.id_produto}" alt="${produto.marca}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.marca}</h5>
+                            <p class="card-text">R$ ${produto.valor}</p>
+                            <form action="/adicionar_ao_carrinho/${produto.id_produto}" method="POST">
+                                <div class="form-group">
+                                    <label for="qtd_pedido_${produto.id_produto}">Quantidade:</label>
+                                    <input type="number" id="qtd_pedido_${produto.id_produto}" name="qtd_pedido" min="1" max="${produto.qtd_estoque}" value="1" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                produtosContainer.appendChild(produtoDiv);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento com PIX</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pedido.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/elephantlogo.png') }}" type="image/png">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Pagamento com PIX</h2>
+
+        <p class="text-center">Para realizar o pagamento via PIX, copie o código abaixo:</p>
+        <div class="alert alert-info text-center">
+            <strong>Código PIX: 231425521321312312fdsfhjgbdfsoijhyu2131232</strong> 
+        </div>
+
+        <p class="text-center">Após realizar o pagamento, clique no botão abaixo:</p>
+        <div class="text-center">
+            <button class="btn btn-success" onclick="location.href='{{ url_for('finalizar_compra') }}'">Confirmar Pagamento</button>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
